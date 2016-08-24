@@ -19,7 +19,7 @@ module FoodApp
       end
     end
     config.active_record.raise_in_transactional_callbacks = true
-    config.api_only = false
-    config.assets.initialize_on_precompile = false
+    # config.api_only = false
+    # config.assets.initialize_on_precompile = false
   end
 end
