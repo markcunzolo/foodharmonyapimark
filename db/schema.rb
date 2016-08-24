@@ -23,6 +23,32 @@ ActiveRecord::Schema.define(version: 20160822145553) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "restaurant_genres", id: false, force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "genre_id"
+  end
+
+  add_index "restaurant_genres", ["genre_id"], name: "index_restaurant_genres_on_genre_id", using: :btree
+  add_index "restaurant_genres", ["restaurant_id", "genre_id"], name: "index_restaurant_genres_on_restaurant_id_and_genre_id", using: :btree
+
+  create_table "restaurant_likes", id: false, force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "user_id"
+    t.boolean "liked",         default: false
+    t.boolean "disliked",      default: false
+  end
+
+  add_index "restaurant_likes", ["restaurant_id", "user_id"], name: "index_restaurant_likes_on_restaurant_id_and_user_id", using: :btree
+  add_index "restaurant_likes", ["user_id"], name: "index_restaurant_likes_on_user_id", using: :btree
+
+  create_table "restaurant_types", id: false, force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "type_id"
+  end
+
+  add_index "restaurant_types", ["restaurant_id", "type_id"], name: "index_restaurant_types_on_restaurant_id_and_type_id", using: :btree
+  add_index "restaurant_types", ["type_id"], name: "index_restaurant_types_on_type_id", using: :btree
+
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "street_address"
@@ -33,32 +59,6 @@ ActiveRecord::Schema.define(version: 20160822145553) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
-  create_table "restaurants_genres", id: false, force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "genre_id"
-  end
-
-  add_index "restaurants_genres", ["genre_id"], name: "index_restaurants_genres_on_genre_id", using: :btree
-  add_index "restaurants_genres", ["restaurant_id", "genre_id"], name: "index_restaurants_genres_on_restaurant_id_and_genre_id", using: :btree
-
-  create_table "restaurants_likes", id: false, force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "user_id"
-    t.boolean "liked",         default: false
-    t.boolean "disliked",      default: false
-  end
-
-  add_index "restaurants_likes", ["restaurant_id", "user_id"], name: "index_restaurants_likes_on_restaurant_id_and_user_id", using: :btree
-  add_index "restaurants_likes", ["user_id"], name: "index_restaurants_likes_on_user_id", using: :btree
-
-  create_table "restaurants_types", id: false, force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.integer "type_id"
-  end
-
-  add_index "restaurants_types", ["restaurant_id", "type_id"], name: "index_restaurants_types_on_restaurant_id_and_type_id", using: :btree
-  add_index "restaurants_types", ["type_id"], name: "index_restaurants_types_on_type_id", using: :btree
 
   create_table "types", force: :cascade do |t|
     t.string   "name"
