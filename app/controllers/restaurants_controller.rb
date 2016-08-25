@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    render json: Restaurant.all
+    render json: Restaurant.all.as_json(:include => [:types, :genres, :restaurant_likes])
   end
 
   def create
@@ -16,7 +16,7 @@ class RestaurantsController < ApplicationController
       end
     end
     @restaurant.save!
-    render json: Restaurant.all
+    render json: Restaurant.all.as_json(:include => [:types, :genres, :restaurant_likes])
   end
 
   private
