@@ -8,6 +8,7 @@ class RestaurantsController < ApplicationController
     if params[:restaurant][:types].present?
       params[:restaurant][:types].each do |t|
         @restaurant.types << Type.find(t)
+        @restaurant.types << Type.find(t)
       end
     end
     if params[:restaurant][:genres].present?
@@ -23,8 +24,13 @@ class RestaurantsController < ApplicationController
   def new_restaurant_params
     params.require(:restaurant).permit(
       :name,
-      :contact_information,
-      :cost
+      :street_address,
+      :cost,
+      :web_site,
+      :phone_number,
+      :zip_code,
+      :types => [:id],
+      :genres => [:id]
     )
   end
 end

@@ -1,18 +1,18 @@
-class RestaurantsController < ApplicationController
+class RestaurantLikesController < ApplicationController
 
   def create
-    puts params
-    @restaurant = Restaurant.new(new_restaurant_params)
-    @restaurant.save!
-    render json: Restaurant.all
+    @restaurant_like = RestaurantLike.new(new_restaurant_like_params)
+    @restaurant_like.save!
+    render json: true
   end
 
   private
-  def new_restaurant_params
-    params.require(:restaurant).permit(
-        :name,
-        :contact_information,
-        :cost
+  def new_restaurant_like_params
+    params.require(:restaurant_like).permit(
+        :restaurant_id,
+        :user_id,
+        :liked,
+        :disliked
     )
   end
 end
