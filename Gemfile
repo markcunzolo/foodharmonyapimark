@@ -27,6 +27,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'rails-api'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
