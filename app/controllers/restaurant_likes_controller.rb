@@ -3,7 +3,7 @@ class RestaurantLikesController < ApplicationController
   def create
     @restaurant_like = RestaurantLike.new(new_restaurant_like_params)
     @restaurant_like.save!
-    render json: true
+    render json: Restaurant.all.as_json(:include => [:types, :genres, :restaurant_likes])
   end
 
   private
