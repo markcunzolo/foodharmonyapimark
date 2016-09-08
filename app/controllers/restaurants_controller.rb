@@ -8,7 +8,6 @@ class RestaurantsController < ApplicationController
     if params[:restaurant][:types].present?
       params[:restaurant][:types].each do |t|
         @restaurant.types << Type.find(t)
-        @restaurant.types << Type.find(t)
       end
     end
     if params[:restaurant][:genres].present?
