@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+config.assets.initialize_on_precompile = false
 
 module FoodApp
   class Application < Rails::Application
@@ -19,7 +20,6 @@ module FoodApp
       end
     end
     config.active_record.raise_in_transactional_callbacks = true
-    config.assets.initialize_on_precompile = false
     config.api_only = false
   end
 end
